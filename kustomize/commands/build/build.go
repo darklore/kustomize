@@ -70,6 +70,9 @@ func NewCmdBuild(
 		Long:         help.Long,
 		Example:      help.Example,
 		SilenceUsage: true,
+		ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+			return nil, cobra.ShellCompDirectiveFilterDirs
+		},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if err := Validate(args); err != nil {
 				return err
